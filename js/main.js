@@ -4,10 +4,12 @@ var choosen = "",
 	removed = "",
 	round2Option = ".",
 	door,
+	otherDoor = "",
 	text,
 	round1 = true;
 	winner = false,
-	strategy = false;
+	goodStrategy = false
+	strategyPage = false;
 
 
 function chooseWinner() {
@@ -29,15 +31,20 @@ function chooseWinner() {
 }
 
 function firstSelection(event) {
+
 	round1 = false;
 	door = $(event.target);
 	choosen = door.data("door");
+	door.removeClass("selectable");
 	$(".selectable").removeClass("selectable");
 	door.addClass("selected");
 	door.effect("pulsate", removeDoor);
 
-	text.fadeOut(400, setRound2Text)
-
+	if (strategyPage) {
+		text.fadeOut(400, strategyR2Text);
+	} else {
+		text.fadeOut(400, setRound2Text);
+	}
 }
 
 function setRound2Text() {
@@ -51,6 +58,14 @@ function setRound2Text() {
 	text.appendTo("body");
 	text.fadeIn();
 
+}
+
+function strategyR2Text() {
+	text.detach();
+	text.find(".strategyR1").addClass("hidden");
+	text.find(".strategyR2").removeClass("hidden");
+	text.appendTo("body");
+	text.fadeIn();
 }
 
 function removeDoor() {
@@ -67,23 +82,34 @@ function removeDoor() {
 			round2Option += target.shift();
 	else
 		round2Option += win;
+	otherDoor = round2Option.slice(1);
+	round2Option = $(round2Option);
 
-	// Remove the target door
+	removed = $("." + target[0])
+	if (strategyPage) {
+		removed.empty();
+		removed.append("0/3");
+		round2Option.empty();
+		round2Option.append("2/3");
+
+	} else {
+		// Remove the target door
+		removed.find("img").fadeIn();
+
+		// Add selectable classes
+		door.addClass("selectable");
+		round2Option.addClass("selectable");
+	}
 	removed = target[0];
-	$("." + removed + " img").fadeIn();
-
-	// Add selectable classes
-	door.addClass("selectable");
-	$(round2Option).addClass("selectable");
 }
 
 function secondSelection(event) {
 	$(".selectable").removeClass("selectable");
 	door = $(event.target);
 	if (choosen == door.data("door")){
-		strategy = false;
+		goodStrategy = false;
 	} else {
-		strategy = true;
+		goodStrategy = true;
 		choosen = door.data("door")
 		$(".selected").removeClass("selected");
 		door.addClass("selected");
@@ -103,22 +129,50 @@ function finalMessage() {
 	if (winner) {
 		$(".final").find(".win").removeClass("hidden");
 		$(".final").find(".win").find("img").show();
-		if (strategy)
+		if (goodStrategy)
 			$(".final").find(".win").find(".goodStrat").removeClass("hidden");
 		else
 			$(".final").find(".win").find(".badStrat").removeClass("hidden");
 	} else {
 		$(".final").find(".loss").removeClass("hidden");
 		$(".final").find(".loss").find("img").show();
-		if (strategy)
+		if (goodStrategy)
 			$(".final").find(".loss").find(".goodStrat").removeClass("hidden");
 		else
 			$(".final").find(".loss").find(".badStrat").removeClass("hidden");
 	}
 
 	$(".final").removeClass("hidden");
-	$("body").animate({ backgroundColor: "white" }, 1000);
-	$(".final").fadeIn(1000);
+	$("body").animate({ backgroundColor: "white" }, 2000);
+	$(".final").fadeIn(2000);
+}
+
+function openStratPage() {
+	resetPage();
+	applyStrategyStyles();
+
+	$("div.strategy").removeClass("hidden");
+}
+
+function resetPage() {
+	$(".final").hide();
+	$(".door img").hide();
+	$(".door").addClass("selectable");
+	door.removeClass("selected");
+	$(".text .round2").hide();
+	$("body").removeAttr('style');
+	round1 = true;
+	round2Option = "."
+	// $("body").css("background-color","hsla(230, 30%, 90%, 1)");
+}
+
+function applyStrategyStyles() {
+	$("body").addClass("strategy");
+	$(".header").addClass("strategy");
+	$(".door").addClass("strategy");
+	$(".door").empty();
+	$(".door").append("1/3");
+	$(".header").append("<em> Strategy</em>")
 }
 
 $(function() {
@@ -136,7 +190,10 @@ $(function() {
 	});
 
 
-
+	$("body").on("click", "a.strategy", function(event) {
+		strategyPage = true;
+		openStratPage();
+	});
 
 
 });

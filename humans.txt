@@ -3,13 +3,16 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Daniel Streit
+    Twitter: @danstreit
 
 # THANKS
 
-    <name>
+    Code School
+    Team Treehouse
+    A million other tutorials
 
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
-    Normalize.css, jQuery, Modernizr
+    Normalize.css, jQuery, Modernizr, jQuery UI
