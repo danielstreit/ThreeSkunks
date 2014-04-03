@@ -24,51 +24,59 @@
 
         <!-- Add your site or application content here -->
 
-        <section class="main">
-            <h2 class="header">Three Skunks</h2>
-            <div class="doorCont">
-                <div class="door selectable one" data-door="one">
-                    <img src="img/x.png" />1</div>
-                <div class="door selectable two" data-door="two">
-                    <img src="img/x.png" />2</div>
-                <div class="door selectable three" data-door="three">
-                    <img src="img/x.png" />3</div>
+        <header>
+            <h1>Three Skunks</h1>
+        </header>
+
+        <section class="doorContainer clearfix">
+            <div class="door selectable one" data-door="one">
+                <img src="img/x.png" />
+                <span>1</span>
             </div>
-            <div class="text">
-                <div class="round1">
-                    <p>
-                        You're trapped in a hallway with three doors. Behind each door is an exit blocked by a skunk! One of the skunks has been descented.  Choose your door.
-                    </p>
-                </div>
-                <div class="round2 hidden">
-                    <p>
-                        You've choosen door <span class="choosen"></span>. Basking in their benevolence, the gamemakers say:
-                        <blockquote>
-                            Out of the goodness of our hearts, we will help you avoid a stinky situation. From the two doors you have not selected, we will remove one that definately has a stinky skunk behind it. The remaining door may also have a stinky skunk, or it may have the descented skunk. Do you want to keep your first choice or switch doors?
-                            <footer>-the gamemakers</footer>
-                        </blockquote>
-                    </p>
-                </div>
-                <div class="strategy hidden">
-                    <p class="strategyR1">
-                        Initially, all the doors are equal.  The probability of the descented skunk being a door is 1/3. Go ahead, pick a door.
-                    </p>
-                    <p class="strategyR2 hidden">
-                        Explanation goes here.
-                    </p>
-                    <footer>
-                        <a href="index.html">Play Again</a> - 
-                        <a href=#>Source Code</a>
-                    </footer>
-                </div>
+            <div class="door selectable two" data-door="two">
+                <img src="img/x.png" />
+                <span>2</span>
+            </div>
+            <div class="door selectable three" data-door="three">
+                <img src="img/x.png" />
+                <span>3</span>
+            </div>
+        </section>
+
+        <section class="text">
+            <div class="round1">
+                <p>
+                    You're trapped in a hallway with three doors. Behind each door is an exit blocked by a skunk! One of the skunks has been descented.  Choose your door.
+                </p>
+            </div>
+            <div class="round2 hidden">
+                <p>
+                    You've choosen door <span class="choosenDoor"></span>. Basking in their benevolence, the gamemakers say:
+                    <blockquote>
+                        Out of the goodness of our hearts, we will help you avoid a stinky situation. From the two doors you have not selected, we will remove one that definately has a stinky skunk behind it. The remaining door may also have a stinky skunk, or it may have the descented skunk. Do you want to keep your first choice or switch doors?
+                        <footer>-the gamemakers</footer>
+                    </blockquote>
+                </p>
+            </div>
+            <div class="strategy hidden">
+                <p class="strategyR1">
+                    Initially, all the doors are equal.  The probability of the descented skunk being a door is 1/3. Go ahead, pick a door.
+                </p>
+                <p class="strategyR2 hidden">
+                    Explanation goes here.
+                </p>
+                <footer>
+                    <a href="index.html">Play Again</a> - 
+                    <a href=#>Source Code</a>
+                </footer>
             </div>
         </section>
 
         <section class="final hidden">
             <div class="win hidden">
-                <img src="img/cuteSkunk.jpg" />
                 <h2>Congratulations!</h2>
-                <p>You found the cute and cuddly skunk with no stink.</p>
+                <img src="img/cuteSkunk.jpg" />
+                <h3>You found the cute and cuddly skunk with no stink.</h3>
                 <div class="goodStrat hidden">
                     <p>
                         The gamemakers are proud of you:
@@ -89,9 +97,9 @@
                 </div>
             </div>
             <div class="loss hidden">
-                <img class="lose" src="img/spraySkunk.jpg" />
                 <h2 class="ew">Ewwwww!</h2>
-                <p>You got sprayed by a stinky skunk!</p>
+                <img class="lose" src="img/spraySkunk.jpg" />
+                <h3>You got sprayed by a stinky skunk!</h3>
                 <div class="goodStrat hidden">
                     <p>
                         The gamemakers sympathize:
