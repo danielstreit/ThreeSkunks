@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Three Skunks</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -46,30 +46,37 @@
         <section class="text">
             <div class="round1">
                 <p>
-                    You're trapped in a hallway with three doors. Behind each door is an exit blocked by a skunk! One of the skunks has been descented.  Choose your door.
+                    The gamemakers have trapped you in a hallway with three mysterious doors. You hear a voice over the loud speaker:
+                    <blockquote>
+                        Behind each door is a skunk. One of these skunks has been descented. Choose your exit wisely.
+                        <footer>-the gamemakers</footer>
+                    </blockquote>
                 </p>
             </div>
             <div class="round2 hidden">
                 <p>
-                    You've choosen door <span class="choosenDoor"></span>. Basking in their benevolence, the gamemakers say:
+                    Are you sure you want door <span class="chosenDoor"></span>? The gamemakers offer more information:
                     <blockquote>
-                        Out of the goodness of our hearts, we will help you avoid a stinky situation. From the two doors you have not selected, we will remove one that definately has a stinky skunk behind it. The remaining door may also have a stinky skunk, or it may have the descented skunk. Do you want to keep your first choice or switch doors?
+                        Out of the goodness of our hearts, we will help you avoid a stinky situation. From the two doors you have not selected, we can assure you that door <span class="removedDoor"></span> definitely has a stinky skunk behind it. Door <span class="otherDoor"></span> may also have a stinky skunk...or it may have the descented skunk. Would you like to keep door <span class="chosenDoor"></span> or switch to door <span class="otherDoor"></span>?
                         <footer>-the gamemakers</footer>
                     </blockquote>
                 </p>
             </div>
             <div class="strategy hidden">
                 <p class="strategyR1">
-                    Initially, all the doors are equal.  The probability of the descented skunk being a door is 1/3. Go ahead, pick a door.
+                    Initially, the probability of the descented skunk being behind any of the doors is equal. You'll pick the correct door 1 out of 3 tries and the wrong door 2 out of 3 tries.
                 </p>
                 <p class="strategyR2 hidden">
-                    Explanation goes here.
+                    When the gamemakers remove a door from the unchosen doors, these probabilities are not effected. The initial choice will still be correct 1 out of 3 times and wrong 2 out of 3 times. But now, because only one door remains of the unchosen, the probability that it is correct is 2/3, the same probability that the initial pick was wrong. So, the best strategy is to pick any door initially and always switch when given the option.
                 </p>
                 <footer>
                     <a href="index.html">Play Again</a> - 
                     <a href=#>Source Code</a>
                 </footer>
             </div>
+            <footer> 
+                <a href=#>Source Code</a>
+            </footer>
         </section>
 
         <section class="final hidden">
@@ -90,7 +97,7 @@
                     <p>
                         The gamemakers are upset with your victory:
                         <blockquote>
-                            You played a poor strategy and won. How dissappointing! You should reek of skunk!
+                            You played a poor strategy and won. How disappointing! You should reek of skunk!
                             <footer>-the gamemakers</footer>
                         </blockquote>
                     </p>
@@ -99,7 +106,7 @@
             <div class="loss hidden">
                 <h2 class="ew">Ewwwww!</h2>
                 <img class="lose" src="img/spraySkunk.jpg" />
-                <h3>You got sprayed by a stinky skunk!</h3>
+                <h3>You've been sprayed by a stinky skunk!</h3>
                 <div class="goodStrat hidden">
                     <p>
                         The gamemakers sympathize:

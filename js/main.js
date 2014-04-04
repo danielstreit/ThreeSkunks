@@ -1,9 +1,9 @@
 
-var choosenDoor,
+var chosenDoor,
 	removedDoor,
 	otherDoor,
 	winningDoor,
-	$choosenDoor,
+	$chosenDoor,
 	$removedDoor,
 	$otherDoor,
 	$text,
@@ -45,22 +45,21 @@ function firstSelection(event) {
 
 	// Initialize variables
 	round1 = false;
-	$choosenDoor = getDoor(event);
-	choosenDoor = $choosenDoor.data("door");
+	$chosenDoor = getDoor(event);
+	chosenDoor = $chosenDoor.data("door");
 
 	// Update DOM to reflect selection
 	$(".selectable").removeClass("selectable");
-	$choosenDoor.addClass("selected");
+	$chosenDoor.addClass("selected");
 
-	// Advance game to round 2 state
-	$choosenDoor.effect("pulsate", removeDoor);
-	$text.fadeOut(400, hideR1showR2);
+	// Pulsate chosenDoor and remove an unchosen door
+	$chosenDoor.effect("pulsate", removeDoor);
 }
 
 /*
 *	Hides round 1 text and shows round 2 text
 *	
-*	Called by firstSelection fadeOut callback
+*	Called by removeDoor
 */
 function hideR1showR2() {
 
@@ -75,11 +74,12 @@ function hideR1showR2() {
 	}
 
 	$text.detach();
+
 	$text.find(r1).addClass("hidden"); // Hide round 1 text
 	$text.find(r2).removeClass("hidden"); // Show round 2 text
 
 	// Insert door variables into text
-	$text.find(".choosenDoor").append(choosenDoor);
+	$text.find(".chosenDoor").append(chosenDoor);
 	$text.find(".removedDoor").append(removedDoor);
 	$text.find(".otherDoor").append(otherDoor);
 
@@ -91,13 +91,13 @@ function hideR1showR2() {
 /*
 *	Removes a door option according to the rules of the game
 *	
-*	Called by firstSelection choosenDoor effect callback
+*	Called by firstSelection chosenDoor effect callback
 */
 function removeDoor() {
 
-	// Create an array of all doors and remove the choosen and the winner
+	// Create an array of all doors and remove the chosen and the winner
 	var target = ["one", "two", "three"].filter(function(el) {
-		return el != choosenDoor && el != winningDoor;
+		return el != chosenDoor && el != winningDoor;
 	});
 
 	// If there are two doors left after the filter, remove one at random
@@ -128,11 +128,12 @@ function removeDoor() {
 
 	} else {
 		// Add selectable classes
-		$choosenDoor.addClass("selectable");
+		$chosenDoor.addClass("selectable");
 		$otherDoor.addClass("selectable");
 	}
 
-	// X out removedDoor
+	// transition to round 2 screen
+	$text.fadeOut(400, hideR1showR2);
 	$removedDoor.find("img").fadeIn(delay);
 }
 
@@ -145,33 +146,33 @@ function secondSelection(event) {
 
 	$(".selectable").removeClass("selectable");
 
-	// Update jQuery choosen door to be door selected in round 2
-	$choosenDoor = getDoor(event);
+	// Update jQuery chosen door to be door selected in round 2
+	$chosenDoor = getDoor(event);
 
 	// Set goodStrategy flag
 	// If the same door was picked as in round 1
-	if (choosenDoor == $choosenDoor.data("door")){
+	if (chosenDoor == $chosenDoor.data("door")){
 		goodStrategy = false;
 
 	// Else player switched, update variables and DOM accordingly
 	} else {
 		goodStrategy = true;
-		choosenDoor = $choosenDoor.data("door")
+		chosenDoor = $chosenDoor.data("door")
 		$(".selected").removeClass("selected");
-		$choosenDoor.addClass("selected");
+		$chosenDoor.addClass("selected");
 	}
 
 	// Set winner flag
-	winner = choosenDoor == winningDoor;
+	winner = chosenDoor == winningDoor;
 
 	// Advance game to final state
-	$choosenDoor.effect("pulsate", finalScreen);
+	$chosenDoor.effect("pulsate", finalScreen);
 }
 
 /*
 *	Initializes and shows the final screen of the game
 *	
-*	Called after round 2 selection in choosenDoor effect callback
+*	Called after round 2 selection in chosenDoor effect callback
 */
 function finalScreen() {
 	$finalScreen.detach();
@@ -209,7 +210,7 @@ function finalScreen() {
 }
 
 /*
-*	Initializes strategy section (with some helper functions)
+*	Initializes strategy section
 *	
 *	Called when strategy link is clicked
 */
@@ -229,7 +230,7 @@ function resetPage() {
 	$finalScreen.effect("scale", "slow");
 	$(".ui-effects-wrapper").remove();
 	$removedDoor.find("img").hide();
-	$choosenDoor.removeClass("selected");
+	$chosenDoor.removeClass("selected");
 	$(".door").addClass("selectable");
 	$(".text .round2").hide();
 	$("body").removeAttr('style');

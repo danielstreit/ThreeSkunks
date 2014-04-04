@@ -170,6 +170,8 @@ header.strategy {
 .text {
     padding: 0 5%;
     text-align: justify;
+    max-width: 700px;
+    margin: auto;
 }
 
 .selectable:hover {
