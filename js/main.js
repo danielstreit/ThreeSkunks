@@ -281,7 +281,7 @@ $(function() {
 	$doorContainer = $(".doorContainer");
 
 	// Listen for a click on a selectable door
-	$("body").on("click", ".selectable", function(event) {
+	$("body").on("click touchstart", ".selectable", function(event) {
 
 		if (round1) {
 			firstSelection(event);
