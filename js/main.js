@@ -120,10 +120,8 @@ function removeDoor() {
 	var delay = 400;
 	if (strategyPage) {
 		// Update odds display
-		$removedDoor.find("span").empty();
-		$removedDoor.find("span").append("0/3");
-		$otherDoor.find("span").empty();
-		$otherDoor.find("span").append("2/3");
+		$removedDoor.find("span").empty().append("0/3");
+		$otherDoor.find("span").empty().append("2/3");
 		delay = 2000;
 
 	} else {
@@ -245,12 +243,9 @@ function resetPage() {
 function showStrategyPage() {
 
 	// Apply strategy styles
-	$("body").addClass("strategy");
-	$("header").addClass("strategy");
-	$(".door").addClass("strategy");
+	$("body, header, .door").addClass("strategy");
 
-	$(".door span").empty();
-	$(".door span").append("1/3");
+	$(".door span").empty().append("1/3");
 	$("header h1").append("<em> Strategy</em>");
 
 	$("div.strategy").removeClass("hidden");

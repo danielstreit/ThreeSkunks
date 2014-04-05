@@ -97,6 +97,7 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+
 body {
     color: hsla(230, 30%, 30%, 1);
     position: relative;
@@ -118,11 +119,16 @@ header {
     border-bottom: 1em solid hsla(230, 30%, 55%, 1);
 }
 
-header h1 {
+header h1, header h3 {
     font-size: 1.5em;
     padding: 1%;
     margin: 0;
     border: none;
+}
+
+header h3 {
+    font-size: 1.1em;
+    text-align: right;
 }
 
 header.strategy {
