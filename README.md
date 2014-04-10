@@ -1,6 +1,6 @@
 # Three Skunks
 
-My first web app, a short game about skunks and probabilities based on the Monty Hall Problem.
+A small game I wrote to learn about javascript and jQuery. Its based on the Monty Hall Problem.
 
 DanielStreit.com/ThreeSkunks
 
